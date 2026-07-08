@@ -1,0 +1,12 @@
+.page {
+  max-width: 560px;
+}
+
+.form-card {
+  padding: var(--spacing-lg);
+}
+
+.form-card h1 {
+  margin: 0 0 var(--spacing-lg);
+  font-size: 1.3rem;
+}

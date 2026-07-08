@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>상품 상세 - Audio Shop Admin</title>
+<link rel="stylesheet" href="../../common/css/style.css">
+<link rel="stylesheet" href="view.css">
+</head>
+<body>
+<header class="admin-header">
+  <div class="container admin-header-inner">
+    <span class="logo">🎧 Audio Shop Admin</span>
+    <nav class="admin-nav">
+      <a href="../index.html">대시보드</a>
+      <a href="list.html" aria-current="page">상품 관리</a>
+      <a href="../orders/list.html">주문 관리</a>
+    </nav>
+    <button type="button" class="btn admin-logout" id="logout-btn">로그아웃</button>
+  </div>
+</header>
+
+<main class="page">
+  <div class="container">
+    <a class="back-link" href="list.html">← 상품 목록</a>
+
+    <div id="product-view" hidden>
+      <div class="card view-card">
+        <div class="view-image">
+          <img id="view-image" alt="">
+        </div>
+        <div class="view-body">
+          <span class="chip" id="view-status"></span>
+          <h1 id="view-name"></h1>
+          <p class="view-meta">
+            <span id="view-brand"></span> · <span id="view-category"></span>
+          </p>
+          <p class="view-price" id="view-price"></p>
+          <p class="view-description" id="view-description"></p>
+          <div class="form-actions">
+            <a class="btn btn-primary" id="edit-link" href="#">수정</a>
+            <a class="btn btn-outline" href="list.html">목록으로</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <p class="empty-state" id="not-found" hidden>상품을 찾을 수 없습니다.</p>
+  </div>
+</main>
+<script src="../../common/js/storage.js"></script>
+<script src="view.js"></script>
+</body>
+</html>

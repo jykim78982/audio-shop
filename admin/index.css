@@ -1,0 +1,51 @@
+.stat-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--spacing);
+  margin-bottom: var(--spacing-lg);
+}
+
+.stat-card {
+  padding: var(--spacing);
+}
+
+.stat-label {
+  margin: 0 0 8px;
+  color: var(--color-text-muted);
+  font-size: 0.82rem;
+  font-weight: 700;
+}
+
+.stat-value {
+  margin: 0;
+  font-size: 1.5rem;
+  font-weight: 800;
+}
+
+.shortcut-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--spacing);
+}
+
+.shortcut-card {
+  padding: var(--spacing);
+}
+
+.shortcut-title {
+  margin: 0 0 4px;
+  font-weight: 800;
+}
+
+.shortcut-desc {
+  margin: 0;
+  color: var(--color-text-muted);
+  font-size: 0.85rem;
+}
+
+@media (max-width: 760px) {
+  .stat-grid,
+  .shortcut-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
