@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>상품 목록 - Audio Shop</title>
+<link rel="stylesheet" href="../common/css/style.css">
+<link rel="stylesheet" href="list.css">
+</head>
+<body>
+<header class="site-header">
+  <div class="container header-inner">
+    <a class="logo" href="../index.html">🎧 AUDIO SHOP</a>
+    <nav class="nav-links">
+      <a href="list.html" aria-current="page">상품 보러가기</a>
+      <a href="#" id="orders-link">주문 조회</a>
+      <a href="#" id="cart-link">장바구니<span class="badge-count" id="cart-badge" hidden>0</span></a>
+      <span id="guest-actions">
+        <a href="../auth/login.html">로그인</a>
+        <a href="../auth/signup.html">회원가입</a>
+      </span>
+      <span id="member-actions" hidden>
+        <span id="member-name"></span>
+        <button type="button" class="btn btn-outline" id="logout-btn">로그아웃</button>
+      </span>
+    </nav>
+  </div>
+</header>
+
+<main class="page">
+  <div class="container">
+    <div class="list-toolbar">
+      <div class="tabs" id="category-tabs">
+        <button type="button" class="is-active" data-category="">ALL</button>
+      </div>
+      <select id="sort-select" class="sort-select">
+        <option value="default">기본순</option>
+        <option value="price-asc">가격 낮은순</option>
+        <option value="price-desc">가격 높은순</option>
+        <option value="brand">브랜드순</option>
+      </select>
+    </div>
+
+    <div class="product-grid" id="product-grid"></div>
+    <p class="empty-state" id="empty-state" hidden>해당 조건의 상품이 없습니다.</p>
+  </div>
+</main>
+<script src="../common/js/storage.js"></script>
+<script src="list.js"></script>
+</body>
+</html>
