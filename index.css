@@ -1,0 +1,9 @@
+.hero br {
+  display: none;
+}
+
+@media (min-width: 640px) {
+  .hero br {
+    display: inline;
+  }
+}

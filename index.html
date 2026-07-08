@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Audio Shop - 음향기기 쇼핑몰</title>
+<link rel="stylesheet" href="common/css/style.css">
+<link rel="stylesheet" href="index.css">
+</head>
+<body>
+<header class="site-header">
+  <div class="container header-inner">
+    <a class="logo" href="index.html">🎧 AUDIO SHOP</a>
+    <nav class="nav-links">
+      <a href="products/list.html">상품 보러가기</a>
+      <a href="#" id="orders-link">주문 조회</a>
+      <a href="#" id="cart-link">장바구니<span class="badge-count" id="cart-badge" hidden>0</span></a>
+      <span id="guest-actions">
+        <a href="auth/login.html">로그인</a>
+        <a href="auth/signup.html">회원가입</a>
+      </span>
+      <span id="member-actions" hidden>
+        <span id="member-name"></span>
+        <button type="button" class="btn btn-outline" id="logout-btn">로그아웃</button>
+      </span>
+    </nav>
+  </div>
+</header>
+
+<main class="page">
+  <div class="container">
+    <section class="hero">
+      <div class="hero-inner">
+        <div class="hero-content">
+          <p class="eyebrow">Audio Shop</p>
+          <h1>당신의 공간을 채우는 <br>사운드를 만나보세요</h1>
+          <p>엄선된 헤드폰, 이어폰, 스피커, 앰프까지 - 취향에 맞는 음향기기를 만나보세요.</p>
+          <a class="btn btn-primary" href="products/list.html">상품 보러가기</a>
+        </div>
+        <div class="hero-image">
+          <img src="common/assets/images/hero-listening.jpg" alt="헤드폰을 쓰고 음악을 즐기는 여성">
+        </div>
+      </div>
+    </section>
+
+    <div class="tabs" id="category-tabs">
+      <button type="button" class="is-active" data-category="">인기</button>
+    </div>
+    <div class="product-grid" id="product-grid"></div>
+
+    <div class="cta-banner">
+      <h2>어떤 상품을 골라야 할지 고민된다면?</h2>
+      <a class="btn" href="products/list.html">전체 상품 보러가기</a>
+    </div>
+  </div>
+</main>
+<script src="common/js/storage.js"></script>
+<script src="index.js"></script>
+</body>
+</html>

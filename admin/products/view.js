@@ -32,7 +32,7 @@
 
   var img = document.getElementById("view-image");
   if (product.image) {
-    img.src = product.image;
+    img.src = ShopStorage.assetUrl(product.image);
     img.alt = product.name;
   } else {
     img.remove();

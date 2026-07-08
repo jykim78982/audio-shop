@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>상품 상세 - Audio Shop</title>
+<link rel="stylesheet" href="../common/css/style.css">
+<link rel="stylesheet" href="detail.css">
+</head>
+<body>
+<header class="site-header">
+  <div class="container header-inner">
+    <a class="logo" href="../index.html">🎧 AUDIO SHOP</a>
+    <nav class="nav-links">
+      <a href="list.html">상품 보러가기</a>
+      <a href="#" id="orders-link">주문 조회</a>
+      <a href="#" id="cart-link">장바구니<span class="badge-count" id="cart-badge" hidden>0</span></a>
+      <span id="guest-actions">
+        <a href="../auth/login.html">로그인</a>
+        <a href="../auth/signup.html">회원가입</a>
+      </span>
+      <span id="member-actions" hidden>
+        <span id="member-name"></span>
+        <button type="button" class="btn btn-outline" id="logout-btn">로그아웃</button>
+      </span>
+    </nav>
+  </div>
+</header>
+
+<main class="page">
+  <div class="container">
+    <a class="back-link" href="list.html">← 상품 목록</a>
+
+    <div class="detail-card" id="detail-view" hidden>
+      <div class="detail-image">
+        <img id="detail-image" alt="">
+      </div>
+      <div class="detail-body">
+        <span class="chip" id="detail-status"></span>
+        <h1 id="detail-name"></h1>
+        <p class="detail-meta">
+          <span id="detail-brand"></span> · <span id="detail-category"></span>
+        </p>
+        <p class="detail-price" id="detail-price"></p>
+        <p class="detail-description" id="detail-description"></p>
+
+        <div class="qty-row">
+          <label for="qty">수량</label>
+          <div class="qty-control">
+            <button type="button" id="qty-minus" aria-label="수량 감소">-</button>
+            <input type="number" id="qty" value="1" min="1">
+            <button type="button" id="qty-plus" aria-label="수량 증가">+</button>
+          </div>
+        </div>
+
+        <button type="button" class="btn btn-primary btn-block" id="add-cart-btn">장바구니 담기</button>
+        <p class="form-help" id="soldout-help" hidden>품절된 상품은 담을 수 없습니다.</p>
+      </div>
+    </div>
+
+    <p class="empty-state" id="not-found" hidden>상품을 찾을 수 없습니다.</p>
+  </div>
+</main>
+<script src="../common/js/storage.js"></script>
+<script src="detail.js"></script>
+</body>
+</html>

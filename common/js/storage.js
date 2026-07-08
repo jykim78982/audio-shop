@@ -49,7 +49,7 @@
       brand: "Sonoré",
       name: "Sonoré Aria 무선 헤드폰",
       price: 259000,
-      image: "",
+      image: "common/assets/images/product-headphone.jpg",
       description: "40mm 다이나믹 드라이버와 액티브 노이즈 캔슬링을 탑재한 오버이어 무선 헤드폰입니다.",
       soldOut: false,
       createdAt: new Date().toISOString()
@@ -60,7 +60,7 @@
       brand: "Nuvox",
       name: "Nuvox Bud Pro 인이어",
       price: 149000,
-      image: "",
+      image: "common/assets/images/product-earphone.jpg",
       description: "IPX4 방수와 자동 노이즈 캔슬링을 지원하는 트루 와이어리스 이어폰입니다.",
       soldOut: false,
       createdAt: new Date().toISOString()
@@ -68,11 +68,11 @@
     {
       id: "p3",
       category: "스피커",
-      brand: "Basswave",
-      name: "Basswave Cube 블루투스 스피커",
-      price: 89000,
-      image: "",
-      description: "360도 사운드와 12시간 연속 재생을 지원하는 휴대용 스피커입니다.",
+      brand: "Sonoré",
+      name: "Sonoré Tower 플로어스탠딩 스피커",
+      price: 980000,
+      image: "common/assets/images/product-speaker.jpg",
+      description: "듀얼 우퍼와 실크 트위터를 탑재한 하이파이 플로어스탠딩 스피커입니다. 홈시어터와 감상용 오디오 시스템에 어울립니다.",
       soldOut: false,
       createdAt: new Date().toISOString()
     },
@@ -80,14 +80,52 @@
       id: "p4",
       category: "앰프/리시버",
       brand: "Ampline",
-      name: "Ampline R7 스테레오 리시버",
-      price: 420000,
-      image: "",
-      description: "2채널 100W 출력의 홈오디오용 스테레오 리시버입니다.",
+      name: "Ampline Spider 20 컴팩트 앰프",
+      price: 189000,
+      image: "common/assets/images/product-amp.jpg",
+      description: "20W 출력의 콤보형 앰프로, 다양한 사운드 모델링과 튜너를 내장해 연습·소규모 공연에 적합합니다.",
       soldOut: true,
+      createdAt: new Date().toISOString()
+    },
+    {
+      id: "p5",
+      category: "마이크",
+      brand: "Studio Voice",
+      name: "Studio Voice C100 콘덴서 마이크",
+      price: 239000,
+      image: "common/assets/images/product-mic.jpg",
+      description: "팝필터와 쇼크마운트가 포함된 대구경 콘덴서 마이크입니다. 보컬 녹음, 팟캐스트, 스트리밍에 적합합니다.",
+      soldOut: false,
+      createdAt: new Date().toISOString()
+    },
+    {
+      id: "p6",
+      category: "액세서리",
+      brand: "AudioLink",
+      name: "AudioLink 포터블 오디오 인터페이스",
+      price: 279000,
+      image: "common/assets/images/product-accessory.jpg",
+      description: "스피콘·XLR·네트워크 단자를 지원하는 컴팩트 오디오 인터페이스입니다. 공연·녹음 현장의 신호 변환과 연결에 활용됩니다.",
+      soldOut: false,
       createdAt: new Date().toISOString()
     }
   ];
+
+  function siteRoot() {
+    var scripts = document.getElementsByTagName("script");
+    for (var i = 0; i < scripts.length; i++) {
+      var src = scripts[i].getAttribute("src") || "";
+      var idx = src.indexOf("common/js/storage.js");
+      if (idx !== -1) return src.slice(0, idx);
+    }
+    return "";
+  }
+
+  function assetUrl(path) {
+    if (!path) return path;
+    if (/^https?:\/\//.test(path) || path.charAt(0) === "/") return path;
+    return siteRoot() + path;
+  }
 
   function init() {
     if (!localStorage.getItem(KEYS.products)) writeJSON(KEYS.products, SEED_PRODUCTS);
@@ -316,6 +354,7 @@
 
   global.ShopStorage = {
     init: init,
+    assetUrl: assetUrl,
     getCategories: getCategories,
     getProducts: getProducts,
     getProductById: getProductById,
