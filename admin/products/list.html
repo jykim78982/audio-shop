@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>상품 관리 - Audio Shop Admin</title>
+<link rel="stylesheet" href="../../common/css/style.css">
+<link rel="stylesheet" href="list.css">
+</head>
+<body>
+<header class="admin-header">
+  <div class="container admin-header-inner">
+    <span class="logo">🎧 Audio Shop Admin</span>
+    <nav class="admin-nav">
+      <a href="../index.html">대시보드</a>
+      <a href="list.html" aria-current="page">상품 관리</a>
+      <a href="../orders/list.html">주문 관리</a>
+    </nav>
+    <button type="button" class="btn admin-logout" id="logout-btn">로그아웃</button>
+  </div>
+</header>
+
+<main class="page">
+  <div class="container">
+    <div class="section-heading">
+      <h2>상품 관리</h2>
+      <a class="btn btn-primary" href="create.html">+ 상품 등록</a>
+    </div>
+
+    <div class="card">
+      <table class="product-table">
+        <thead>
+          <tr>
+            <th>상품명</th>
+            <th>브랜드</th>
+            <th>카테고리</th>
+            <th>가격</th>
+            <th>상태</th>
+            <th>관리</th>
+          </tr>
+        </thead>
+        <tbody id="product-tbody"></tbody>
+      </table>
+      <p class="empty-state" id="empty-state" hidden>등록된 상품이 없습니다.</p>
+    </div>
+  </div>
+</main>
+<script src="../../common/js/storage.js"></script>
+<script src="list.js"></script>
+</body>
+</html>

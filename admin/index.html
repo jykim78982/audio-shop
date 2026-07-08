@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>관리자 대시보드 - Audio Shop</title>
+<link rel="stylesheet" href="../common/css/style.css">
+<link rel="stylesheet" href="index.css">
+</head>
+<body>
+<header class="admin-header">
+  <div class="container admin-header-inner">
+    <span class="logo">🎧 Audio Shop Admin</span>
+    <nav class="admin-nav">
+      <a href="index.html" aria-current="page">대시보드</a>
+      <a href="products/list.html">상품 관리</a>
+      <a href="orders/list.html">주문 관리</a>
+    </nav>
+    <button type="button" class="btn admin-logout" id="logout-btn">로그아웃</button>
+  </div>
+</header>
+
+<main class="page">
+  <div class="container">
+    <div class="section-heading">
+      <h2>대시보드</h2>
+      <p id="admin-name"></p>
+    </div>
+
+    <div class="stat-grid">
+      <div class="card stat-card">
+        <p class="stat-label">전체 주문 수</p>
+        <p class="stat-value" id="stat-order-count">0</p>
+      </div>
+      <div class="card stat-card">
+        <p class="stat-label">총 매출</p>
+        <p class="stat-value" id="stat-revenue">0원</p>
+      </div>
+      <div class="card stat-card">
+        <p class="stat-label">배송 준비중 주문</p>
+        <p class="stat-value" id="stat-preparing">0</p>
+      </div>
+      <div class="card stat-card">
+        <p class="stat-label">등록 상품 수</p>
+        <p class="stat-value" id="stat-product-count">0</p>
+      </div>
+    </div>
+
+    <div class="section-heading">
+      <h2>바로가기</h2>
+    </div>
+    <div class="shortcut-grid">
+      <a class="card shortcut-card" href="products/create.html">
+        <p class="shortcut-title">상품 등록</p>
+        <p class="shortcut-desc">새 상품을 등록합니다.</p>
+      </a>
+      <a class="card shortcut-card" href="products/list.html">
+        <p class="shortcut-title">상품 목록</p>
+        <p class="shortcut-desc">등록된 상품을 조회/수정/삭제합니다.</p>
+      </a>
+      <a class="card shortcut-card" href="orders/list.html">
+        <p class="shortcut-title">주문 관리</p>
+        <p class="shortcut-desc">주문 상태와 배송 정보를 관리합니다.</p>
+      </a>
+    </div>
+  </div>
+</main>
+<script src="../common/js/storage.js"></script>
+<script src="index.js"></script>
+</body>
+</html>

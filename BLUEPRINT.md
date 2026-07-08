@@ -327,17 +327,18 @@ audio-shop/
 - [x] 오늘 주문 수 / 매출 합계 / 배송 준비중 주문 수 집계 로직 (초기엔 0으로 표시, 주문 데이터는 이후 Phase에서 채워짐)
 - [x] 상품 관리 / 주문 관리 내비게이션
 
-### Phase 3. 상품 관리 (`admin/products/`) — 관리자 전용 ⭐ 최우선 구현
+### Phase 3. 상품 관리 (`admin/products/`) — 관리자 전용 ⭐ 최우선 구현 ✅
 - [x] `create.html` + `create.js` — 신규 상품 등록 폼(이름/브랜드/카테고리/가격/설명/이미지/재고) → `shop_products`에 추가
 - [x] `list.html` + `list.js` — 상품 목록, 품절 토글(Update)·삭제(Delete)는 인라인 처리
-- [ ] **[리팩터링]** 현재 `admin/products/detail.html`·`detail.js`는 2.1 원칙(view/edit 분리) 반영 이전에 만들어져 조회+수정이 한 파일에 합쳐져 있음 → `view.html`/`view.js`(읽기 전용, Read)와 `edit.html`/`edit.js`(수정 폼, Update)로 분리, `list.html`의 "수정" 링크를 `edit.html`로, 신규 "보기" 링크를 `view.html`로 연결
+- [x] `view.html` + `view.js` — 상품 상세(읽기 전용, Read), 수정 폼 없이 정보만 표시 + `edit.html`로 이동하는 링크
+- [x] `edit.html` + `edit.js` — 기존 값이 채워진 수정 폼(Update), `view.html`과 파일 분리(2.1 원칙 준수)
 - [x] 이 단계까지 완료 후 관리자 로그인 → 상품 등록까지 엔드투엔드로 동작 확인
 
-### Phase 4. 상품 조회 (공개, 회원/비회원 공용) ✅
-- [x] `index.html` — 인덱스 페이지 (배너, 로그인 상태별 헤더 분기, 장바구니/주문조회 링크)
-- [x] `products/list.html` + `list.js` — 카테고리 필터, 브랜드/가격 정렬, (Phase 3에서 등록한) 상품 카드 렌더링, 품절 비활성화
-- [x] `products/detail.html` + `detail.js` — 상품 상세(이미지/브랜드/가격/설명/스펙), 수량 선택
-- [x] "담기" 클릭 시 로그인 여부(`shop_session`) 분기 → `/my/cart` or `/guest/cart` 이동 로직
+### Phase 4. 상품 조회 (공개, 회원/비회원 공용)
+- [ ] `index.html` — 인덱스 페이지 (배너, 로그인 상태별 헤더 분기, 장바구니/주문조회 링크)
+- [ ] `products/list.html` + `list.js` — 카테고리 필터, 브랜드/가격 정렬, (Phase 3에서 등록한) 상품 카드 렌더링, 품절 비활성화
+- [ ] `products/detail.html` + `detail.js` — 상품 상세(이미지/브랜드/가격/설명/스펙), 수량 선택
+- [ ] "담기" 클릭 시 로그인 여부(`shop_session`) 분기 → `/my/cart` or `/guest/cart` 이동 로직
 
 ### Phase 5. 회원 인증 (`auth/`)
 - [ ] `auth/signup.html` + `signup.js` — 회원가입 폼, 이메일 중복 체크, `shop_users`에 추가
