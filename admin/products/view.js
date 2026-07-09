@@ -1,17 +1,20 @@
 (function () {
   "use strict";
 
-  var admin = ShopStorage.requireAdminSession();
+  ShopData.init();
+  ShopUtils.init();
+
+  var admin = ShopUtils.requireAdminSession();
   if (!admin) return;
 
   document.getElementById("logout-btn").addEventListener("click", function () {
-    ShopStorage.adminLogout();
-    location.href = ShopStorage.adminRoot() + "auth/login.html";
+    ShopUtils.adminLogout();
+    location.href = ShopUtils.adminRoot() + "auth/login.html";
   });
 
   var params = new URLSearchParams(location.search);
   var id = params.get("id");
-  var product = id ? ShopStorage.getProductById(id) : null;
+  var product = id ? ShopData.getProductById(id) : null;
 
   if (!product) {
     document.getElementById("not-found").hidden = false;
@@ -32,7 +35,7 @@
 
   var img = document.getElementById("view-image");
   if (product.image) {
-    img.src = ShopStorage.assetUrl(product.image);
+    img.src = ShopUtils.assetUrl(product.image);
     img.alt = product.name;
   } else {
     img.remove();

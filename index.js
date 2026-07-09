@@ -1,12 +1,15 @@
 (function () {
   "use strict";
 
-  var user = ShopStorage.getCurrentUser();
+  ShopData.init();
+  ShopUtils.init();
+
+  var user = ShopUtils.getCurrentUser();
 
   document.getElementById("cart-link").href = user ? "my/cart/index.html" : "guest/cart/index.html";
   document.getElementById("orders-link").href = user ? "my/orders/list.html" : "guest/orders/lookup.html";
 
-  var cartCount = ShopStorage.getCartCount();
+  var cartCount = ShopUtils.getCartCount();
   var cartBadge = document.getElementById("cart-badge");
   if (cartCount > 0) {
     cartBadge.textContent = cartCount;
@@ -18,13 +21,13 @@
     document.getElementById("member-actions").hidden = false;
     document.getElementById("member-name").textContent = user.name + "님";
     document.getElementById("logout-btn").addEventListener("click", function () {
-      ShopStorage.logout();
+      ShopUtils.logout();
       location.href = "index.html";
     });
   }
 
   var tabsEl = document.getElementById("category-tabs");
-  ShopStorage.getCategories().forEach(function (cat) {
+  ShopData.getCategories().forEach(function (cat) {
     var btn = document.createElement("button");
     btn.type = "button";
     btn.textContent = cat;
@@ -43,7 +46,7 @@
     thumb.className = "product-thumb";
     if (p.image) {
       var img = document.createElement("img");
-      img.src = ShopStorage.assetUrl(p.image);
+      img.src = ShopUtils.assetUrl(p.image);
       img.alt = p.name;
       thumb.appendChild(img);
     }
@@ -74,7 +77,7 @@
   }
 
   function render(category) {
-    var products = ShopStorage.getProducts();
+    var products = ShopData.getProducts();
     if (category) {
       products = products.filter(function (p) { return p.category === category; });
     }

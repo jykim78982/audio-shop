@@ -1,3 +1,57 @@
+/* admin/auth/login.html 전용 스타일. css/variables.css를 불러온 뒤 이 파일이 나머지를 전부 정의합니다. */
+.page {
+  padding-top: var(--spacing-lg);
+  padding-bottom: 64px;
+}
+
+.eyebrow {
+  color: var(--color-accent);
+  font-size: 0.82rem;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  margin: 0 0 10px;
+}
+
+/* ===== 폼 ===== */
+.form-group {
+  margin-bottom: var(--spacing);
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 6px;
+  font-size: 0.88rem;
+  font-weight: 700;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+  width: 100%;
+  padding: 10px 12px;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  background: var(--color-surface);
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+  outline: 2px solid rgba(47, 111, 237, 0.35);
+  outline-offset: 1px;
+}
+
+.form-error {
+  color: var(--color-danger);
+  font-size: 0.85rem;
+  margin-bottom: var(--spacing);
+}
+
+.form-error[hidden] {
+  display: none;
+}
+
 .login-page {
   display: flex;
   align-items: center;

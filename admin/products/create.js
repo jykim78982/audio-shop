@@ -1,16 +1,19 @@
 (function () {
   "use strict";
 
-  var admin = ShopStorage.requireAdminSession();
+  ShopData.init();
+  ShopUtils.init();
+
+  var admin = ShopUtils.requireAdminSession();
   if (!admin) return;
 
   document.getElementById("logout-btn").addEventListener("click", function () {
-    ShopStorage.adminLogout();
-    location.href = ShopStorage.adminRoot() + "auth/login.html";
+    ShopUtils.adminLogout();
+    location.href = ShopUtils.adminRoot() + "auth/login.html";
   });
 
   var categorySelect = document.getElementById("category");
-  ShopStorage.getCategories().forEach(function (cat) {
+  ShopData.getCategories().forEach(function (cat) {
     var opt = document.createElement("option");
     opt.value = cat;
     opt.textContent = cat;
@@ -34,7 +37,7 @@
       return;
     }
 
-    ShopStorage.addProduct({
+    ShopData.addProduct({
       name: name,
       brand: brand,
       category: categorySelect.value,

@@ -1,7 +1,138 @@
+/* admin/products/create.html, edit.html 공용 스타일. css/variables.css를 불러온 뒤 이 파일이 나머지를 전부 정의합니다. */
 .page {
+  padding-top: var(--spacing-lg);
+  padding-bottom: 64px;
   max-width: 560px;
 }
 
+/* ===== 관리자 헤더/내비게이션 ===== */
+.admin-header {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  background: var(--color-primary);
+  border-bottom: 1px solid var(--color-primary-dark);
+}
+
+.admin-header-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--spacing);
+  min-height: 60px;
+}
+
+.admin-header .logo {
+  color: #fff;
+}
+
+.admin-nav {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  flex-wrap: wrap;
+}
+
+.admin-nav a {
+  padding: 4px 0;
+  color: rgba(255, 255, 255, 0.65);
+  font-size: 0.86rem;
+  font-weight: 700;
+}
+
+.admin-nav a[aria-current="page"],
+.admin-nav a:hover {
+  color: #fff;
+}
+
+.admin-logout {
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  color: #fff;
+}
+
+.back-link {
+  display: inline-flex;
+  margin-bottom: var(--spacing);
+  color: var(--color-primary);
+  font-weight: 800;
+}
+
+/* ===== 폼 ===== */
+.form-group {
+  margin-bottom: var(--spacing);
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 6px;
+  font-size: 0.88rem;
+  font-weight: 700;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+  width: 100%;
+  padding: 10px 12px;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  background: var(--color-surface);
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+  outline: 2px solid rgba(47, 111, 237, 0.35);
+  outline-offset: 1px;
+}
+
+.form-checkbox label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.form-checkbox input {
+  width: auto;
+}
+
+.form-error {
+  color: var(--color-danger);
+  font-size: 0.85rem;
+  margin-bottom: var(--spacing);
+}
+
+.form-error[hidden] {
+  display: none;
+}
+
+.form-help {
+  margin: 6px 0 0;
+  color: var(--color-text-muted);
+  font-size: 0.8rem;
+}
+
+.form-actions {
+  display: flex;
+  gap: 8px;
+}
+
+.empty-state {
+  display: grid;
+  justify-items: center;
+  gap: var(--spacing-sm);
+  padding: 48px 24px;
+  text-align: center;
+  color: var(--color-text-muted);
+  font-weight: 700;
+}
+
+.empty-state[hidden] {
+  display: none;
+}
+
+/* ===== 상품 등록/수정 폼 카드 ===== */
 .form-card {
   padding: var(--spacing-lg);
 }

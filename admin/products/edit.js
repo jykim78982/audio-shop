@@ -1,17 +1,20 @@
 (function () {
   "use strict";
 
-  var admin = ShopStorage.requireAdminSession();
+  ShopData.init();
+  ShopUtils.init();
+
+  var admin = ShopUtils.requireAdminSession();
   if (!admin) return;
 
   document.getElementById("logout-btn").addEventListener("click", function () {
-    ShopStorage.adminLogout();
-    location.href = ShopStorage.adminRoot() + "auth/login.html";
+    ShopUtils.adminLogout();
+    location.href = ShopUtils.adminRoot() + "auth/login.html";
   });
 
   var params = new URLSearchParams(location.search);
   var id = params.get("id");
-  var product = id ? ShopStorage.getProductById(id) : null;
+  var product = id ? ShopData.getProductById(id) : null;
 
   if (!product) {
     document.getElementById("not-found").hidden = false;
@@ -21,7 +24,7 @@
   document.getElementById("edit-card").hidden = false;
 
   var categorySelect = document.getElementById("category");
-  ShopStorage.getCategories().forEach(function (cat) {
+  ShopData.getCategories().forEach(function (cat) {
     var opt = document.createElement("option");
     opt.value = cat;
     opt.textContent = cat;
@@ -53,7 +56,7 @@
       return;
     }
 
-    ShopStorage.updateProduct(product.id, {
+    ShopData.updateProduct(product.id, {
       name: name,
       brand: brand,
       category: categorySelect.value,

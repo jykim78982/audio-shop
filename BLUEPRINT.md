@@ -14,7 +14,7 @@
 ### 1.1 디자인 레퍼런스
 - **메인 인덱스(`index.html`)**: [shokz.co.kr](https://shokz.co.kr/) 홈 참고 — 다크 그라디언트 히어로 배너, 밑줄 탭 형태의 카테고리 내비게이션, 하단 다크 CTA 배너.
 - **그 외 모든 페이지**(상품 목록/상세, 관리자 포함): [shokz.co.kr/shop/all](https://shokz.co.kr/shop/all) 참고 — 화이트 캔버스, 테두리/그림자 없는 카탈로그형 상품 카드, 밑줄 탭 카테고리 필터.
-- **공통 토큰**(`common/css/style.css`): 화이트+블랙 베이스에 코랄(`--color-accent: #ff5a3c`) 포인트, 테두리·그림자 최소화. `.tabs`(밑줄 탭), `.product-grid`/`.product-card`(테두리 없는 카드), `.hero`/`.cta-banner`(다크 배너) 컴포넌트를 공용으로 두었으니, **이후 Phase(5~9)에서 새 페이지를 만들 때도 이 컴포넌트와 토큰을 그대로 재사용**할 것 — 새로운 색상/버튼 스타일을 임의로 추가하지 않는다.
+- **공통 토큰**(`css/variables.css`): 화이트+블랙 베이스에 코랄(`--color-accent: #ff5a3c`) 포인트, 테두리·그림자 최소화. 색상/여백 토큰과 리셋, 가장 널리 쓰이는 원자 컴포넌트(`.card`, `.btn`)만 여기 두고, `.tabs`(밑줄 탭)·`.product-grid`/`.product-card`(테두리 없는 카드)·`.hero`/`.cta-banner`(다크 배너)·헤더/내비 같은 페이지 합성 컴포넌트는 각 페이지 CSS에 자체 포함시킨다(2.2 참고). **이후 Phase(5~9)에서 새 페이지를 만들 때도 같은 톤·같은 클래스명을 그대로 재사용**할 것 — 새로운 색상/버튼 스타일을 임의로 추가하지 않는다.
 
 ---
 
@@ -97,16 +97,20 @@ audio-shop/
 │       ├── status.html             # GET /admin/orders/status  → 주문 상세/상태 변경
 │       └── status.js
 │
-└── common/                         # 🔧 공용 리소스
-    ├── css/
-    │   └── style.css               # 공통 스타일 (반응형)
-    ├── js/
-    │   └── storage.js              # localStorage 읽기/쓰기 공통 모듈 (상품/장바구니/주문)
-    └── assets/
-        └── images/                 # 상품 이미지 (플레이스홀더)
+├── css/                             # 🔧 공용 스타일
+│   └── variables.css                # 디자인 토큰 + 리셋 + 원자 컴포넌트(.card, .btn) — cafe의 css/variables.css와 동일한 위상 (2.2 참고)
+│
+├── js/                              # 🔧 공용 데이터/유틸
+│   ├── data.js                      # ShopData — 상품/카테고리 CRUD (localStorage 읽기/쓰기)
+│   └── utils.js                     # ShopUtils — 회원·관리자 인증, 장바구니, 주문, 경로(assetUrl) 등 나머지 전부
+│
+└── images/                          # 🔧 이미지
+    ├── hero-listening.jpg           # 인덱스 히어로 사진 (특정 리소스에 속하지 않는 이미지)
+    └── products/                    # 상품 사진 (리소스명 하위 폴더, cafe의 images/menus/와 동일한 위상)
 ```
 
-- 모든 화면은 항상 `common/js/storage.js`를 통해서만 localStorage에 접근함 (개별 페이지가 키를 직접 건드리지 않도록 캡슐화).
+- 각 페이지의 `*.css`는 그 페이지가 쓰는 컴포넌트 스타일을 전부 자체 포함하고, `css/variables.css`에서는 토큰·리셋·`.card`·`.btn`만 가져다 씀 (2.2 참고).
+- 모든 화면은 항상 `js/data.js`(상품/카테고리)·`js/utils.js`(그 외 전부)를 통해서만 localStorage에 접근함 (개별 페이지가 키를 직접 건드리지 않도록 캡슐화). 각 페이지 JS는 최상단에서 `ShopData.init()`과 `ShopUtils.init()`을 명시적으로 호출해야 함(자동 실행 아님, cafe의 `CafeData.init()` 호출 관례와 동일).
 - `view.html`·`edit.html`(관리자 상품)·`detail.html`(고객용 상품 상세)·`status.html`(주문)류 페이지는 리소스 id를 쿼리스트링(`?id=p1`)으로 받아 렌더링 (예: `/admin/products/edit?id=p1`, `/my/orders/status?id=o20260701-001`).
 - **관리자 로그인**: `/admin/*` 진입 시 `shop_admin_session` 여부를 체크해 미로그인이면 `/admin/auth/login`으로 리다이렉트.
 - **회원/비회원 분기**: `products/detail.html`의 "담기" 버튼은 로그인 여부(`shop_session`)를 확인해 `/my/cart` 또는 `/guest/cart`로 이동. `my/` 하위 페이지는 진입 시 로그인 여부를 체크해 미로그인이면 `/auth/login`으로 리다이렉트.
@@ -114,6 +118,50 @@ audio-shop/
 
 ### 클린 URL에 대한 참고
 정적 파일 그대로 서빙하면 브라우저 주소창에는 `.html` 확장자가 남습니다. 지금 단계(정적 프로토타입)에서는 파일명은 `list.html`처럼 유지하고, 확장자 없는 클린 URL 설정은 실제 배포 단계에서 추가하는 것을 권장합니다.
+
+### 2.2 리소스 배치 리팩터링 — cafe 프로젝트 스타일로 전환 (완료)
+
+같은 작업자가 만든 `cafe` 프로젝트는 공용 리소스(css/js/images)를 `common/` 하위에 몰아넣지 않고 **루트에 바로 풀어놓는** 방식을 씁니다. audio-shop도 `구조변경` 브랜치에서 이 방식으로 전환을 완료했습니다.
+
+**cafe와 대응 관계**
+
+| 이전 audio-shop | 현재 audio-shop (cafe 스타일) | 비고 |
+|---|---|---|
+| `common/css/style.css` | `css/variables.css` | cafe의 `css/variables.css`처럼 **디자인 토큰 + 리셋 + `.card`/`.btn`만** 남기고, 헤더/내비·탭·상품카드·히어로 같은 합성 컴포넌트는 각 페이지 CSS로 이동 |
+| `common/js/storage.js` (단일 모듈) | `js/data.js` + `js/utils.js` | cafe의 `CafeData`(메뉴)/`CafeUtils`(장바구니·포맷팅) 2분할처럼, **`data.js`는 상품/카테고리 데이터**, **`utils.js`는 나머지 전부**(회원·관리자 인증, 장바구니, 주문, `assetUrl` 경로 유틸)를 담당. `ShopStorage` → `ShopData`/`ShopUtils`로 전역 객체명도 분리 |
+| `common/assets/images/` | `images/products/` | cafe의 `images/menus/`처럼 리소스명 하위 폴더 사용. 히어로 사진처럼 특정 리소스에 속하지 않는 이미지는 `images/` 바로 아래에 둠(cafe의 `assets/videos/hero-coffee.mp4`와 동급) |
+| 각 페이지가 `ShopStorage.init()` 자동 실행에 의존 | 각 페이지 JS 최상단에서 `ShopData.init()`/`ShopUtils.init()` 명시적 호출 | cafe의 `CafeData.init()`을 각 페이지가 직접 호출하는 관례와 동일 |
+| `admin/products/view.html` | *(변경 없음, `view.html` 유지)* | cafe의 관리자 상세 페이지는 이름이 `detail.html`이지만, audio-shop은 고객용 상품 상세(`products/detail.html`)와 이름이 겹치는 걸 피하고 "읽기 전용"이라는 의미를 살리기 위해 **`view.html` 이름은 의도적으로 유지** (2.1 원칙과 일관성 유지) |
+| `admin/orders/status.html` (예정) | *(변경 없음, `status.html` 유지 예정)* | cafe는 동일한 역할(주문 상세 조회 + 상태 변경 Update)을 `detail.html`이라는 이름으로 둠. audio-shop은 "조회뿐 아니라 상태변경도 한다"는 걸 이름에서 드러내려고 **`status.html`을 의도적으로 유지** — cafe와 이름은 다르지만 기능은 동일 |
+| 페이지별 `*.css`/`*.js` 파일이 페이지와 같은 폴더에 위치 | *(변경 없음)* | audio-shop도 이미 cafe와 동일하게 페이지-CSS-JS를 같은 폴더에 붙여서 관리 중이므로 그대로 유지 |
+
+**cafe와 다르게 그대로 유지하는 부분 (구조 아님, 기능 범위 차이)**
+- **`admin/auth/`(관리자 로그인)**: cafe는 관리자 로그인 자체가 없어서 대응되는 폴더가 없음. audio-shop은 모의 관리자 인증이 BLUEPRINT 1장부터 정한 핵심 요구사항이라 그대로 유지.
+- **`my/` · `guest/` 분리**: cafe는 회원/비회원 구분 없이 `basket/`, `orders/`, `my/index.html`(주문내역) 하나씩만 있음. audio-shop은 회원/비회원 장바구니·주문조회 흐름이 다르다는 게 핵심 설계라서(3장 데이터 모델의 `customerType` 등) 이 분리는 유지. 즉 이번 리팩터링은 **공용 리소스(css/js/images) 배치 방식만** cafe에 맞추는 것이고, 화면 구성 자체를 cafe만큼 단순화하는 건 범위 밖.
+
+**최상위 트리 (2. 파일 구조의 전체 트리와 동일, 여기서는 공용 리소스 부분만 발췌)**
+```
+audio-shop/
+├── index.html / index.css / index.js
+├── products/       (list, detail — 각 html/css/js)
+├── auth/           (login, signup — Phase 5 예정)
+├── my/cart/, my/orders/ (Phase 6 예정)
+├── guest/cart/, guest/orders/ (Phase 7 예정)
+├── admin/          (auth/, index, products/, orders/ — orders/는 Phase 8 예정)
+│
+├── css/
+│   └── variables.css      # 디자인 토큰 전용 (구 common/css/style.css)
+│
+├── js/
+│   ├── data.js             # 상품/카테고리 (구 storage.js 일부)
+│   └── utils.js            # 인증·장바구니·주문 등 나머지 (구 storage.js 일부)
+│
+└── images/
+    ├── hero-listening.jpg
+    └── products/            # 상품 사진 (구 common/assets/images/)
+```
+
+**적용 결과**: 모든 페이지의 `<link>`/`<script src>` 경로를 `css/variables.css`, `js/data.js`, `js/utils.js` 기준으로 갱신했고, `assetUrl()`이 찾는 스크립트 경로 힌트도 `"js/utils.js"` 문자열 매칭으로 옮겼습니다. 헤더/내비·탭·상품카드·히어로·폼 등 합성 컴포넌트 CSS는 이를 사용하는 각 페이지 CSS 파일에 전부 자체 포함시켰고(파일 수가 많아 페이지 그룹별로 나눠서 진행), 기존 `common/` 폴더는 삭제했습니다. 헤드리스 브라우저로 고객 13개·관리자 11개 시나리오 전부 재검증 완료.
 
 ---
 
