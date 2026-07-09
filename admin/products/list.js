@@ -1,19 +1,22 @@
 (function () {
   "use strict";
 
-  var admin = ShopStorage.requireAdminSession();
+  ShopData.init();
+  ShopUtils.init();
+
+  var admin = ShopUtils.requireAdminSession();
   if (!admin) return;
 
   document.getElementById("logout-btn").addEventListener("click", function () {
-    ShopStorage.adminLogout();
-    location.href = ShopStorage.adminRoot() + "auth/login.html";
+    ShopUtils.adminLogout();
+    location.href = ShopUtils.adminRoot() + "auth/login.html";
   });
 
   var tbody = document.getElementById("product-tbody");
   var emptyState = document.getElementById("empty-state");
 
   function render() {
-    var products = ShopStorage.getProducts();
+    var products = ShopData.getProducts();
     tbody.innerHTML = "";
     emptyState.hidden = products.length > 0;
 
@@ -51,7 +54,7 @@
       toggleBtn.className = "btn btn-outline toggle-btn";
       toggleBtn.textContent = p.soldOut ? "판매중으로" : "품절로";
       toggleBtn.addEventListener("click", function () {
-        ShopStorage.updateProduct(p.id, { soldOut: !p.soldOut });
+        ShopData.updateProduct(p.id, { soldOut: !p.soldOut });
         render();
       });
 
@@ -66,7 +69,7 @@
       deleteBtn.textContent = "삭제";
       deleteBtn.addEventListener("click", function () {
         if (!confirm(p.name + " 상품을 삭제하시겠습니까?")) return;
-        ShopStorage.deleteProduct(p.id);
+        ShopData.deleteProduct(p.id);
         render();
       });
 

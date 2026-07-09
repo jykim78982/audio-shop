@@ -1,12 +1,15 @@
 (function () {
   "use strict";
 
-  var user = ShopStorage.getCurrentUser();
+  ShopData.init();
+  ShopUtils.init();
+
+  var user = ShopUtils.getCurrentUser();
 
   document.getElementById("cart-link").href = user ? "../my/cart/index.html" : "../guest/cart/index.html";
   document.getElementById("orders-link").href = user ? "../my/orders/list.html" : "../guest/orders/lookup.html";
 
-  var cartCount = ShopStorage.getCartCount();
+  var cartCount = ShopUtils.getCartCount();
   var cartBadge = document.getElementById("cart-badge");
   if (cartCount > 0) {
     cartBadge.textContent = cartCount;
@@ -18,14 +21,14 @@
     document.getElementById("member-actions").hidden = false;
     document.getElementById("member-name").textContent = user.name + "님";
     document.getElementById("logout-btn").addEventListener("click", function () {
-      ShopStorage.logout();
+      ShopUtils.logout();
       location.href = "../index.html";
     });
   }
 
   var params = new URLSearchParams(location.search);
   var id = params.get("id");
-  var product = id ? ShopStorage.getProductById(id) : null;
+  var product = id ? ShopData.getProductById(id) : null;
 
   if (!product) {
     document.getElementById("not-found").hidden = false;
@@ -45,7 +48,7 @@
 
   var img = document.getElementById("detail-image");
   if (product.image) {
-    img.src = ShopStorage.assetUrl(product.image);
+    img.src = ShopUtils.assetUrl(product.image);
     img.alt = product.name;
   } else {
     img.remove();
@@ -68,7 +71,7 @@
     document.getElementById("soldout-help").hidden = false;
   } else {
     addCartBtn.addEventListener("click", function () {
-      ShopStorage.addToCart(product.id, Number(qtyInput.value));
+      ShopUtils.addToCart(product.id, Number(qtyInput.value));
       location.href = user ? "../my/cart/index.html" : "../guest/cart/index.html";
     });
   }

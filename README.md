@@ -35,7 +35,9 @@ audio-shop/
 ├── my/                      # 회원 전용 (장바구니, 주문내역)
 ├── guest/                   # 비회원 전용 (장바구니, 주문조회)
 ├── admin/                   # 관리자 (인증, 대시보드, 상품/주문 관리)
-└── common/                  # 공용 css/js/이미지
+├── css/                     # 공용 스타일(variables.css)
+├── js/                      # 공용 데이터/유틸(data.js, utils.js)
+└── images/                  # 상품 이미지
 ```
 
 ## 데이터 모델

@@ -1,8 +1,11 @@
 (function () {
   "use strict";
 
-  if (ShopStorage.getCurrentAdmin()) {
-    location.href = ShopStorage.adminRoot() + "index.html";
+  ShopData.init();
+  ShopUtils.init();
+
+  if (ShopUtils.getCurrentAdmin()) {
+    location.href = ShopUtils.adminRoot() + "index.html";
     return;
   }
 
@@ -16,13 +19,13 @@
     var email = document.getElementById("email").value.trim();
     var password = document.getElementById("password").value;
 
-    var session = ShopStorage.adminLogin(email, password);
+    var session = ShopUtils.adminLogin(email, password);
     if (!session) {
       errorEl.textContent = "이메일 또는 비밀번호가 올바르지 않습니다.";
       errorEl.hidden = false;
       return;
     }
 
-    location.href = ShopStorage.adminRoot() + "index.html";
+    location.href = ShopUtils.adminRoot() + "index.html";
   });
 })();
