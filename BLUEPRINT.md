@@ -115,6 +115,49 @@ audio-shop/
 ### 클린 URL에 대한 참고
 정적 파일 그대로 서빙하면 브라우저 주소창에는 `.html` 확장자가 남습니다. 지금 단계(정적 프로토타입)에서는 파일명은 `list.html`처럼 유지하고, 확장자 없는 클린 URL 설정은 실제 배포 단계에서 추가하는 것을 권장합니다.
 
+### 2.2 리소스 배치 리팩터링 — cafe 프로젝트 스타일로 전환 (계획, 아직 미적용)
+
+같은 작업자가 만든 `cafe` 프로젝트는 공용 리소스(css/js/images)를 `common/` 하위에 몰아넣지 않고 **루트에 바로 풀어놓는** 방식을 씁니다. audio-shop도 이 방식으로 맞춥니다. 실제 파일 이동은 이 문서에 계획을 남긴 뒤 별도 작업으로 진행합니다.
+
+**cafe와 대응 관계**
+
+| 현재 audio-shop | 변경 후 (cafe 스타일) | 비고 |
+|---|---|---|
+| `common/css/style.css` | `css/variables.css` | cafe의 `css/variables.css`처럼 **색상/여백 등 디자인 토큰만** 남기고, 버튼·카드·탭 같은 컴포넌트 스타일은 각 페이지 CSS로 이동 |
+| `common/js/storage.js` (단일 모듈) | `js/data.js` + `js/utils.js` | cafe의 `CafeData`(메뉴)/`CafeUtils`(장바구니·포맷팅) 2분할처럼, **`data.js`는 상품/카테고리 데이터**, **`utils.js`는 나머지 전부**(회원·관리자 인증, 장바구니, 주문)를 담당 |
+| `common/assets/images/` | `images/products/` | cafe의 `images/menus/`처럼 리소스명 하위 폴더 사용. 히어로 사진처럼 특정 리소스에 속하지 않는 이미지는 `images/` 바로 아래에 둠(cafe의 `assets/videos/hero-coffee.mp4`와 동급) |
+| `admin/products/view.html` | *(변경 없음, `view.html` 유지)* | cafe의 관리자 상세 페이지는 이름이 `detail.html`이지만, audio-shop은 고객용 상품 상세(`products/detail.html`)와 이름이 겹치는 걸 피하고 "읽기 전용"이라는 의미를 살리기 위해 **`view.html` 이름은 의도적으로 유지** (2.1 원칙과 일관성 유지) |
+| `admin/orders/status.html` (예정) | *(변경 없음, `status.html` 유지)* | cafe는 동일한 역할(주문 상세 조회 + 상태 변경 Update)을 `detail.html`이라는 이름으로 둠. audio-shop은 "조회뿐 아니라 상태변경도 한다"는 걸 이름에서 드러내려고 **`status.html`을 의도적으로 유지** — cafe와 이름은 다르지만 기능은 동일 |
+| 페이지별 `*.css`/`*.js` 파일이 페이지와 같은 폴더에 위치 | *(변경 없음)* | audio-shop도 이미 cafe와 동일하게 페이지-CSS-JS를 같은 폴더에 붙여서 관리 중이므로 그대로 유지 |
+
+**cafe와 다르게 그대로 유지하는 부분 (구조 아님, 기능 범위 차이)**
+- **`admin/auth/`(관리자 로그인)**: cafe는 관리자 로그인 자체가 없어서 대응되는 폴더가 없음. audio-shop은 모의 관리자 인증이 BLUEPRINT 1장부터 정한 핵심 요구사항이라 그대로 유지.
+- **`my/` · `guest/` 분리**: cafe는 회원/비회원 구분 없이 `basket/`, `orders/`, `my/index.html`(주문내역) 하나씩만 있음. audio-shop은 회원/비회원 장바구니·주문조회 흐름이 다르다는 게 핵심 설계라서(3장 데이터 모델의 `customerType` 등) 이 분리는 유지. 즉 이번 리팩터링은 **공용 리소스(css/js/images) 배치 방식만** cafe에 맞추는 것이고, 화면 구성 자체를 cafe만큼 단순화하는 건 범위 밖.
+
+**변경 후 최상위 트리**
+```
+audio-shop/
+├── index.html / index.css / index.js
+├── products/       (list, detail — 각 html/css/js)
+├── auth/           (login, signup)
+├── my/cart/, my/orders/
+├── guest/cart/, guest/orders/
+├── admin/          (auth/, index, products/, orders/ — 구조는 2. 파일 구조와 동일, 참조 경로만 변경)
+│
+├── css/
+│   └── variables.css      # 디자인 토큰 전용 (구 common/css/style.css)
+│
+├── js/
+│   ├── data.js             # 상품/카테고리 (구 storage.js 일부)
+│   └── utils.js            # 인증·장바구니·주문 등 나머지 (구 storage.js 일부)
+│
+└── images/
+    ├── hero-listening.jpg
+    └── products/            # 상품 사진 (구 common/assets/images/)
+```
+
+**영향 범위**: 모든 페이지의 `<link>`/`<script src>` 경로(`common/css/style.css` → `css/variables.css` 등)와, `ShopStorage.assetUrl()`이 찾는 스크립트 경로 힌트(`"common/js/storage.js"` 문자열 매칭)를 `js/data.js`·`js/utils.js` 기준으로 다시 계산하도록 손봐야 함. 컴포넌트 CSS를 각 페이지로 흩어놓는 작업은 파일 수가 많아 **가장 손이 많이 가는 부분** — 실제 진행 시 페이지 그룹별로 나눠서 진행 예정.
+
 ---
 
 ## 3. 데이터 모델 (localStorage 키 설계)
