@@ -5,7 +5,7 @@
   ShopUtils.init();
 
   if (ShopUtils.getCurrentAdmin()) {
-    location.href = ShopUtils.adminRoot() + "index.html";
+    location.href = ShopUtils.adminRoot();
     return;
   }
 
@@ -26,6 +26,6 @@
       return;
     }
 
-    location.href = ShopUtils.adminRoot() + "index.html";
+    location.href = ShopUtils.adminRoot();
   });
 })();

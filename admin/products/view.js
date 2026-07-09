@@ -9,7 +9,7 @@
 
   document.getElementById("logout-btn").addEventListener("click", function () {
     ShopUtils.adminLogout();
-    location.href = ShopUtils.adminRoot() + "auth/login.html";
+    location.href = ShopUtils.adminRoot() + "auth/login";
   });
 
   var params = new URLSearchParams(location.search);
@@ -27,7 +27,7 @@
   document.getElementById("view-category").textContent = product.category;
   document.getElementById("view-price").textContent = product.price.toLocaleString() + "원";
   document.getElementById("view-description").textContent = product.description || "등록된 설명이 없습니다.";
-  document.getElementById("edit-link").href = "edit.html?id=" + encodeURIComponent(product.id);
+  document.getElementById("edit-link").href = "edit?id=" + encodeURIComponent(product.id);
 
   var statusChip = document.getElementById("view-status");
   statusChip.textContent = product.soldOut ? "품절" : "판매중";

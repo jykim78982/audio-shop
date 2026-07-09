@@ -9,7 +9,7 @@
 
   document.getElementById("logout-btn").addEventListener("click", function () {
     ShopUtils.adminLogout();
-    location.href = ShopUtils.adminRoot() + "auth/login.html";
+    location.href = ShopUtils.adminRoot() + "auth/login";
   });
 
   var params = new URLSearchParams(location.search);
@@ -66,6 +66,6 @@
       soldOut: document.getElementById("soldOut").checked
     });
 
-    location.href = "view.html?id=" + encodeURIComponent(product.id);
+    location.href = "view?id=" + encodeURIComponent(product.id);
   });
 })();
