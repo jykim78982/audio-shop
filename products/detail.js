@@ -6,8 +6,8 @@
 
   var user = ShopUtils.getCurrentUser();
 
-  document.getElementById("cart-link").href = user ? "../my/cart/index.html" : "../guest/cart/index.html";
-  document.getElementById("orders-link").href = user ? "../my/orders/list.html" : "../guest/orders/lookup.html";
+  document.getElementById("cart-link").href = user ? "../my/cart/" : "../guest/cart/";
+  document.getElementById("orders-link").href = user ? "../my/orders/list" : "../guest/orders/lookup";
 
   var cartCount = ShopUtils.getCartCount();
   var cartBadge = document.getElementById("cart-badge");
@@ -22,7 +22,7 @@
     document.getElementById("member-name").textContent = user.name + "님";
     document.getElementById("logout-btn").addEventListener("click", function () {
       ShopUtils.logout();
-      location.href = "../index.html";
+      location.href = "../";
     });
   }
 
@@ -72,7 +72,7 @@
   } else {
     addCartBtn.addEventListener("click", function () {
       ShopUtils.addToCart(product.id, Number(qtyInput.value));
-      location.href = user ? "../my/cart/index.html" : "../guest/cart/index.html";
+      location.href = user ? "../my/cart/" : "../guest/cart/";
     });
   }
 })();

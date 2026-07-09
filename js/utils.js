@@ -89,7 +89,7 @@
   function requireAdminSession() {
     var admin = getCurrentAdmin();
     if (!admin) {
-      location.href = adminRoot() + "auth/login.html";
+      location.href = adminRoot() + "auth/login";
       return null;
     }
     return admin;

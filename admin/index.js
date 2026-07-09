@@ -22,6 +22,6 @@
 
   document.getElementById("logout-btn").addEventListener("click", function () {
     ShopUtils.adminLogout();
-    location.href = ShopUtils.adminRoot() + "auth/login.html";
+    location.href = ShopUtils.adminRoot() + "auth/login";
   });
 })();

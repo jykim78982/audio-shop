@@ -9,7 +9,7 @@
 
   document.getElementById("logout-btn").addEventListener("click", function () {
     ShopUtils.adminLogout();
-    location.href = ShopUtils.adminRoot() + "auth/login.html";
+    location.href = ShopUtils.adminRoot() + "auth/login";
   });
 
   var categorySelect = document.getElementById("category");
@@ -47,6 +47,6 @@
       soldOut: document.getElementById("soldOut").checked
     });
 
-    location.href = "list.html";
+    location.href = "list";
   });
 })();

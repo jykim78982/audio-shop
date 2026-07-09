@@ -9,7 +9,7 @@
 
   document.getElementById("logout-btn").addEventListener("click", function () {
     ShopUtils.adminLogout();
-    location.href = ShopUtils.adminRoot() + "auth/login.html";
+    location.href = ShopUtils.adminRoot() + "auth/login";
   });
 
   var tbody = document.getElementById("product-tbody");
@@ -26,7 +26,7 @@
       var tdName = document.createElement("td");
       var link = document.createElement("a");
       link.className = "name-link";
-      link.href = "view.html?id=" + encodeURIComponent(p.id);
+      link.href = "view?id=" + encodeURIComponent(p.id);
       link.textContent = p.name;
       tdName.appendChild(link);
 
@@ -60,7 +60,7 @@
 
       var editLink = document.createElement("a");
       editLink.className = "btn btn-outline toggle-btn";
-      editLink.href = "edit.html?id=" + encodeURIComponent(p.id);
+      editLink.href = "edit?id=" + encodeURIComponent(p.id);
       editLink.textContent = "수정";
 
       var deleteBtn = document.createElement("button");
