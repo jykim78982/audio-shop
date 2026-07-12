@@ -31,18 +31,21 @@
   <div class="container">
     <a class="back-link" href="list">← 상품 목록</a>
 
-    <div class="detail-card" id="detail-view" hidden>
-      <div class="detail-image">
-        <img id="detail-image" alt="">
+    <div class="detail-hero" id="detail-view" hidden>
+      <div class="detail-gallery">
+        <div class="detail-image">
+          <img id="detail-image" alt="">
+        </div>
       </div>
-      <div class="detail-body">
-        <span class="chip" id="detail-status"></span>
-        <h1 id="detail-name"></h1>
-        <p class="detail-meta">
-          <span id="detail-brand"></span> · <span id="detail-category"></span>
-        </p>
+
+      <div class="detail-info">
+        <p class="detail-brand" id="detail-brand"></p>
+        <div class="detail-title-row">
+          <h1 id="detail-name"></h1>
+          <span class="chip" id="detail-status"></span>
+        </div>
+        <p class="detail-category-line">카테고리 · <span id="detail-category"></span></p>
         <p class="detail-price" id="detail-price"></p>
-        <p class="detail-description" id="detail-description"></p>
 
         <div class="qty-row">
           <label for="qty">수량</label>
@@ -53,14 +56,50 @@
           </div>
         </div>
 
-        <button type="button" class="btn btn-primary btn-block" id="add-cart-btn">장바구니 담기</button>
+        <div class="detail-actions">
+          <button type="button" class="btn btn-outline btn-block" id="add-cart-btn">장바구니 담기</button>
+          <button type="button" class="btn btn-accent btn-block" id="buy-now-btn">바로 구매</button>
+        </div>
         <p class="form-help" id="soldout-help" hidden>품절된 상품은 담을 수 없습니다.</p>
+
+        <ul class="trust-badges">
+          <li><span class="badge-icon">🚚</span>무료배송</li>
+          <li><span class="badge-icon">🛡️</span>정품 보증</li>
+          <li><span class="badge-icon">↩️</span>7일 이내 교환/반품</li>
+        </ul>
       </div>
     </div>
+
+    <section class="detail-content" id="detail-content" hidden>
+      <h2>상품 상세</h2>
+      <p class="detail-description" id="detail-description"></p>
+
+      <h2>상품 정보</h2>
+      <table class="spec-table">
+        <tbody>
+          <tr><th>브랜드</th><td id="spec-brand"></td></tr>
+          <tr><th>카테고리</th><td id="spec-category"></td></tr>
+          <tr><th>가격</th><td id="spec-price"></td></tr>
+          <tr><th>판매상태</th><td id="spec-status"></td></tr>
+        </tbody>
+      </table>
+    </section>
 
     <p class="empty-state" id="not-found" hidden>상품을 찾을 수 없습니다.</p>
   </div>
 </main>
+
+<div class="modal-overlay" id="added-modal" hidden>
+  <div class="card modal">
+    <h3>장바구니에 담았습니다</h3>
+    <p class="modal-desc">계속 쇼핑하시겠어요, 장바구니로 이동하시겠어요?</p>
+    <div class="form-actions">
+      <button type="button" class="btn btn-outline" id="keep-shopping-btn">쇼핑 계속하기</button>
+      <button type="button" class="btn btn-primary" id="go-cart-btn">장바구니로 이동</button>
+    </div>
+  </div>
+</div>
+
 <script src="../js/data.js"></script>
 <script src="../js/utils.js"></script>
 <script src="detail.js"></script>

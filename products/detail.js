@@ -36,11 +36,17 @@
   }
 
   document.getElementById("detail-view").hidden = false;
+  document.getElementById("detail-content").hidden = false;
   document.getElementById("detail-name").textContent = product.name;
   document.getElementById("detail-brand").textContent = product.brand;
   document.getElementById("detail-category").textContent = product.category;
   document.getElementById("detail-price").textContent = product.price.toLocaleString() + "원";
   document.getElementById("detail-description").textContent = product.description || "등록된 설명이 없습니다.";
+
+  document.getElementById("spec-brand").textContent = product.brand;
+  document.getElementById("spec-category").textContent = product.category;
+  document.getElementById("spec-price").textContent = product.price.toLocaleString() + "원";
+  document.getElementById("spec-status").textContent = product.soldOut ? "품절" : "판매중";
 
   var statusChip = document.getElementById("detail-status");
   statusChip.textContent = product.soldOut ? "품절" : "판매중";
@@ -66,11 +72,30 @@
   });
 
   var addCartBtn = document.getElementById("add-cart-btn");
+  var buyNowBtn = document.getElementById("buy-now-btn");
+  var addedModal = document.getElementById("added-modal");
   if (product.soldOut) {
     addCartBtn.disabled = true;
+    buyNowBtn.disabled = true;
     document.getElementById("soldout-help").hidden = false;
   } else {
     addCartBtn.addEventListener("click", function () {
+      ShopUtils.addToCart(product.id, Number(qtyInput.value));
+      var count = ShopUtils.getCartCount();
+      cartBadge.textContent = count;
+      cartBadge.hidden = count === 0;
+      addedModal.hidden = false;
+    });
+
+    document.getElementById("keep-shopping-btn").addEventListener("click", function () {
+      addedModal.hidden = true;
+    });
+
+    document.getElementById("go-cart-btn").addEventListener("click", function () {
+      location.href = user ? "../my/cart/" : "../guest/cart/";
+    });
+
+    buyNowBtn.addEventListener("click", function () {
       ShopUtils.addToCart(product.id, Number(qtyInput.value));
       location.href = user ? "../my/cart/" : "../guest/cart/";
     });
