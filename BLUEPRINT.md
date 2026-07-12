@@ -415,11 +415,11 @@ audio-shop/
 - [x] `my/orders/list.html` + `list.js` — 본인(`userId`) 명의 주문 목록, 배송중 주문 뱃지 표시
 - [x] `my/orders/status.html` + `status.js` — 주문 상세 + **배송 조회**(배송사/운송장번호 표시, 조회 링크, `statusHistory` 타임라인 렌더링)
 
-### Phase 7. 비회원 장바구니 & 주문 (`guest/`)
-- [ ] `guest/cart/index.html` + `index.js` — `my/cart`와 동일 UI, 결제 시 연락처+배송지 입력 필수
-- [ ] "결제하기" → 모의 결제 확인 모달 → 주문 생성(`customerType: guest`, `guestPhone` 저장) → `/guest/orders/status?id=...&phone=...` 이동
-- [ ] `guest/orders/lookup.html` + `lookup.js` — 주문번호 + 연락처 입력 폼 → 일치 주문 검색
-- [ ] `guest/orders/status.html` + `status.js` — 조회 성공 시에만 상세 노출 + **배송 조회**(회원용과 동일한 타임라인 UI)
+### Phase 7. 비회원 장바구니 & 주문 (`guest/`) ✅
+- [x] `guest/cart/index.html` + `index.js` — `my/cart`와 동일 UI, 결제 시 연락처+배송지 입력 필수
+- [x] "결제하기" → 모의 결제 확인 모달 → 주문 생성(`guestPhone` 저장) → `/guest/orders/status?id=...&phone=...` 이동
+- [x] `guest/orders/lookup.html` + `lookup.js` — 주문번호 + 연락처 입력 폼 → 일치 주문 검색
+- [x] `guest/orders/status.html` + `status.js` — 조회 성공 시에만 상세 노출 + **배송 조회**(회원용과 동일한 타임라인 UI)
 
 ### Phase 8. 관리자 주문 관리 (`admin/orders/`)
 - [ ] `list.html` + `list.js` — 전체 주문 목록 확인 (상태별 필터)

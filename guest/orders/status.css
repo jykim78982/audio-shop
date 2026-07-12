@@ -1,0 +1,286 @@
+/* guest/orders/status.html 전용 스타일. css/variables.css를 불러온 뒤 이 파일이 나머지를 전부 정의합니다. */
+.page {
+  padding-top: var(--spacing-lg);
+  padding-bottom: 64px;
+  max-width: 720px;
+}
+
+/* ===== 헤더/내비게이션 ===== */
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  background: #ffffff;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.header-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--spacing-lg);
+  min-height: 68px;
+}
+
+.logo {
+  color: var(--color-primary);
+  font-size: 1.15rem;
+  font-weight: 900;
+  letter-spacing: 0.01em;
+}
+
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 28px;
+  flex-wrap: wrap;
+}
+
+.nav-links a {
+  padding: 4px 0;
+  color: var(--color-text-muted);
+  font-size: 0.85rem;
+  font-weight: 700;
+  letter-spacing: 0.01em;
+}
+
+.nav-links a[aria-current="page"],
+.nav-links a:hover {
+  color: var(--color-primary);
+}
+
+.nav-links .badge-count {
+  display: inline-grid;
+  place-items: center;
+  min-width: 20px;
+  height: 20px;
+  margin-left: 4px;
+  border-radius: 999px;
+  background: var(--color-accent);
+  color: #fff;
+  font-size: 0.7rem;
+  font-weight: 800;
+  padding: 0 5px;
+}
+
+.nav-links .badge-count[hidden] {
+  display: none;
+}
+
+.back-link {
+  display: inline-flex;
+  margin-bottom: var(--spacing);
+  color: var(--color-primary);
+  font-weight: 800;
+}
+
+/* ===== 뱃지/칩 ===== */
+.chip {
+  display: inline-flex;
+  width: fit-content;
+  border-radius: 4px;
+  padding: 3px 9px;
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.02em;
+  color: #fff;
+  white-space: nowrap;
+}
+
+.chip-neutral { background: var(--color-text-muted); }
+.chip-accent { background: var(--color-accent); }
+.chip-success { background: var(--color-success); }
+
+/* ===== 주문 요약 카드 ===== */
+.order-summary-card {
+  padding: var(--spacing-lg);
+  margin-bottom: var(--spacing-lg);
+}
+
+.order-summary-head {
+  display: flex;
+  align-items: start;
+  justify-content: space-between;
+  margin-bottom: var(--spacing);
+}
+
+.order-id {
+  margin: 0 0 4px;
+  font-size: 1.1rem;
+  font-weight: 800;
+}
+
+.order-date {
+  margin: 0;
+  color: var(--color-text-muted);
+  font-size: 0.85rem;
+}
+
+.order-items {
+  border-top: 1px solid var(--color-border);
+  border-bottom: 1px solid var(--color-border);
+  padding: var(--spacing) 0;
+  margin-bottom: var(--spacing);
+}
+
+.order-item-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--spacing);
+  padding: 6px 0;
+  font-size: 0.9rem;
+}
+
+.order-item-row .item-name {
+  font-weight: 700;
+}
+
+.order-item-row .item-qty {
+  color: var(--color-text-muted);
+  font-size: 0.8rem;
+}
+
+.summary-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 0.95rem;
+}
+
+.total-row {
+  margin-bottom: var(--spacing);
+  font-size: 1.05rem;
+}
+
+.order-address .label {
+  margin: 0 0 4px;
+  color: var(--color-text-muted);
+  font-size: 0.8rem;
+  font-weight: 700;
+}
+
+.order-address p:last-child {
+  margin: 0;
+}
+
+/* ===== 배송 조회 카드 ===== */
+.shipping-card {
+  padding: var(--spacing-lg);
+}
+
+.shipping-card h3 {
+  margin: 0 0 var(--spacing);
+  font-size: 1.05rem;
+}
+
+.shipping-info {
+  margin: 0 0 var(--spacing);
+  font-size: 0.9rem;
+}
+
+.shipping-info[hidden] {
+  display: none;
+}
+
+.shipping-info a {
+  margin-left: 8px;
+  color: var(--color-accent);
+  font-weight: 700;
+}
+
+.shipping-help {
+  margin: 0 0 var(--spacing);
+  color: var(--color-text-muted);
+  font-size: 0.85rem;
+}
+
+.shipping-help[hidden] {
+  display: none;
+}
+
+/* ===== 타임라인 ===== */
+.timeline {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.timeline li {
+  position: relative;
+  padding: 0 0 24px 28px;
+  font-size: 0.9rem;
+}
+
+.timeline li::before {
+  content: "";
+  position: absolute;
+  left: 4px;
+  top: 2px;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--color-primary);
+}
+
+.timeline li::after {
+  content: "";
+  position: absolute;
+  left: 8px;
+  top: 12px;
+  bottom: 0;
+  width: 2px;
+  background: var(--color-border);
+}
+
+.timeline li:last-child::after {
+  display: none;
+}
+
+.timeline li.is-pending {
+  color: var(--color-text-muted);
+}
+
+.timeline li.is-pending::before {
+  background: var(--color-border);
+}
+
+.timeline .stage-name {
+  display: block;
+  font-weight: 800;
+}
+
+.timeline .stage-time {
+  display: block;
+  font-size: 0.78rem;
+  color: var(--color-text-muted);
+}
+
+/* ===== 빈 상태 ===== */
+.empty-state {
+  display: grid;
+  justify-items: center;
+  gap: var(--spacing-sm);
+  padding: 80px 24px;
+  text-align: center;
+  color: var(--color-text-muted);
+  font-weight: 700;
+}
+
+.empty-state[hidden] {
+  display: none;
+}
+
+@media (max-width: 760px) {
+  .header-inner {
+    align-items: stretch;
+    flex-direction: column;
+    gap: 8px;
+    padding: 12px 0;
+    min-height: 0;
+  }
+
+  .nav-links {
+    gap: 16px;
+  }
+}
