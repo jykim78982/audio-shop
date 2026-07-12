@@ -421,11 +421,11 @@ audio-shop/
 - [x] `guest/orders/lookup.html` + `lookup.js` — 주문번호 + 연락처 입력 폼 → 일치 주문 검색
 - [x] `guest/orders/status.html` + `status.js` — 조회 성공 시에만 상세 노출 + **배송 조회**(회원용과 동일한 타임라인 UI)
 
-### Phase 8. 관리자 주문 관리 (`admin/orders/`)
-- [ ] `list.html` + `list.js` — 전체 주문 목록 확인 (상태별 필터)
-- [ ] `status.html` + `status.js` — 주문 상세, 상태 변경(접수 → 배송준비중 → 배송중 → 배송완료)
-- [ ] `배송중`으로 변경 시 배송사/운송장번호 입력 폼 → `shipping` 필드 저장
-- [ ] 상태 변경 시마다 `shipping.statusHistory`에 이벤트 추가
+### Phase 8. 관리자 주문 관리 (`admin/orders/`) ✅
+- [x] `list.html` + `list.js` — 전체 주문 목록 확인 (상태별 필터)
+- [x] `status.html` + `status.js` — 주문 상세, 상태 변경(접수 → 배송준비중 → 배송중 → 배송완료)
+- [x] `배송중`으로 변경 시 배송사/운송장번호 입력 폼 → `shipping` 필드 저장
+- [x] 상태 변경 시마다 `shipping.statusHistory`에 이벤트 추가
 
 ### Phase 9. 통합 점검 & 마무리
 - [ ] 회원 전체 흐름 점검: 로그인 → 상품 조회 → 담기 → 결제 → 주문 상세 → 배송 조회

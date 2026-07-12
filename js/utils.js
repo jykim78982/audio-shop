@@ -100,6 +100,11 @@
     return readJSON(KEYS.session, null);
   }
 
+  function getUserById(id) {
+    var users = readJSON(KEYS.users, []);
+    return users.find(function (u) { return u.id === id; }) || null;
+  }
+
   function addUser(data) {
     var users = readJSON(KEYS.users, []);
     if (users.some(function (u) { return u.email === data.email; })) {
@@ -243,6 +248,7 @@
     adminRoot: adminRoot,
     requireAdminSession: requireAdminSession,
     getCurrentUser: getCurrentUser,
+    getUserById: getUserById,
     addUser: addUser,
     login: login,
     logout: logout,

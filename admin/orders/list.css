@@ -1,0 +1,168 @@
+/* admin/orders/list.html 전용 스타일. css/variables.css를 불러온 뒤 이 파일이 나머지를 전부 정의합니다. */
+.page {
+  padding-top: var(--spacing-lg);
+  padding-bottom: 64px;
+}
+
+/* ===== 관리자 헤더/내비게이션 ===== */
+.admin-header {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  background: var(--color-primary);
+  border-bottom: 1px solid var(--color-primary-dark);
+}
+
+.admin-header-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--spacing);
+  min-height: 60px;
+}
+
+.admin-header .logo {
+  color: #fff;
+}
+
+.admin-nav {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  flex-wrap: wrap;
+}
+
+.admin-nav a {
+  padding: 4px 0;
+  color: rgba(255, 255, 255, 0.65);
+  font-size: 0.86rem;
+  font-weight: 700;
+}
+
+.admin-nav a[aria-current="page"],
+.admin-nav a:hover {
+  color: #fff;
+}
+
+.admin-logout {
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  color: #fff;
+}
+
+.section-heading {
+  display: flex;
+  align-items: end;
+  justify-content: space-between;
+  gap: var(--spacing);
+  margin-bottom: var(--spacing);
+}
+
+.section-heading h2 {
+  margin: 0;
+  font-size: 1.2rem;
+}
+
+/* ===== 상태 필터 탭 ===== */
+.tabs {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  flex-wrap: wrap;
+  border-bottom: 1px solid var(--color-border);
+  margin-bottom: var(--spacing-lg);
+}
+
+.tabs button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 10px 0;
+  margin-bottom: -1px;
+  border-bottom: 2px solid transparent;
+  color: var(--color-text-muted);
+  font-size: 0.88rem;
+  font-weight: 700;
+}
+
+.tabs button.is-active {
+  color: var(--color-primary);
+  border-bottom-color: var(--color-accent);
+}
+
+.tabs button:hover {
+  color: var(--color-primary);
+}
+
+/* ===== 뱃지/칩 ===== */
+.chip {
+  display: inline-flex;
+  width: fit-content;
+  border-radius: 4px;
+  padding: 3px 9px;
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.02em;
+  color: #fff;
+  white-space: nowrap;
+}
+
+.chip-neutral { background: var(--color-text-muted); }
+.chip-accent { background: var(--color-accent); }
+.chip-success { background: var(--color-success); }
+
+/* ===== 주문 테이블 ===== */
+.order-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.order-table th,
+.order-table td {
+  padding: 12px 16px;
+  text-align: left;
+  border-bottom: 1px solid var(--color-border);
+  font-size: 0.88rem;
+}
+
+.order-table th {
+  color: var(--color-text-muted);
+  font-weight: 700;
+  font-size: 0.8rem;
+}
+
+.order-table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+.order-table .id-link {
+  font-weight: 700;
+  color: var(--color-primary);
+}
+
+.order-table .customer-type {
+  color: var(--color-text-muted);
+  font-size: 0.78rem;
+}
+
+.empty-state {
+  display: grid;
+  justify-items: center;
+  gap: var(--spacing-sm);
+  padding: 48px 24px;
+  text-align: center;
+  color: var(--color-text-muted);
+  font-weight: 700;
+}
+
+.empty-state[hidden] {
+  display: none;
+}
+
+/* ===== 반응형 ===== */
+@media (max-width: 760px) {
+  .order-table {
+    display: block;
+    overflow-x: auto;
+  }
+}
