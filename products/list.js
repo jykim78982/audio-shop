@@ -46,6 +46,32 @@
   var sortSelect = document.getElementById("sort-select");
   var grid = document.getElementById("product-grid");
   var emptyState = document.getElementById("empty-state");
+  var addedModal = document.getElementById("added-modal");
+
+  var viewToggle = document.getElementById("view-toggle");
+  var VIEW_KEY = "shop_view_mode";
+
+  function applyView(mode) {
+    grid.classList.toggle("is-list-view", mode === "list");
+    viewToggle.querySelectorAll("button").forEach(function (b) {
+      b.classList.toggle("is-active", b.dataset.view === mode);
+    });
+    localStorage.setItem(VIEW_KEY, mode);
+  }
+
+  applyView(localStorage.getItem(VIEW_KEY) || "grid");
+
+  viewToggle.addEventListener("click", function (e) {
+    var btn = e.target.closest("button");
+    if (!btn) return;
+    applyView(btn.dataset.view);
+  });
+
+  function updateCartBadge() {
+    var count = ShopUtils.getCartCount();
+    cartBadge.textContent = count;
+    cartBadge.hidden = count === 0;
+  }
 
   function renderCard(p) {
     var card = document.createElement("a");
@@ -79,10 +105,42 @@
     price.className = "product-price";
     price.textContent = p.price.toLocaleString() + "원";
 
+    var actions = document.createElement("div");
+    actions.className = "product-card-actions";
+
+    var addBtn = document.createElement("button");
+    addBtn.type = "button";
+    addBtn.className = "btn btn-outline btn-sm";
+    addBtn.textContent = "담기";
+    addBtn.disabled = p.soldOut;
+    addBtn.addEventListener("click", function (e) {
+      e.preventDefault();
+      e.stopPropagation();
+      ShopUtils.addToCart(p.id, 1);
+      updateCartBadge();
+      addedModal.hidden = false;
+    });
+
+    var buyBtn = document.createElement("button");
+    buyBtn.type = "button";
+    buyBtn.className = "btn btn-accent btn-sm";
+    buyBtn.textContent = "구매";
+    buyBtn.disabled = p.soldOut;
+    buyBtn.addEventListener("click", function (e) {
+      e.preventDefault();
+      e.stopPropagation();
+      ShopUtils.addToCart(p.id, 1);
+      location.href = user ? "../my/cart/" : "../guest/cart/";
+    });
+
+    actions.appendChild(addBtn);
+    actions.appendChild(buyBtn);
+
     card.appendChild(thumb);
     card.appendChild(category);
     card.appendChild(name);
     card.appendChild(price);
+    card.appendChild(actions);
     return card;
   }
 
@@ -120,6 +178,14 @@
     render();
   });
   sortSelect.addEventListener("change", render);
+
+  document.getElementById("keep-shopping-btn").addEventListener("click", function () {
+    addedModal.hidden = true;
+  });
+
+  document.getElementById("go-cart-btn").addEventListener("click", function () {
+    location.href = user ? "../my/cart/" : "../guest/cart/";
+  });
 
   render();
 })();
