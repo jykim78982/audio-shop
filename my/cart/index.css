@@ -88,6 +88,10 @@
   align-items: start;
 }
 
+.cart-layout[hidden] {
+  display: none;
+}
+
 .cart-list {
   padding: var(--spacing);
 }
