@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>주문 상세 - Audio Shop Admin</title>
+<link rel="stylesheet" href="../../css/variables.css">
+<link rel="stylesheet" href="status.css">
+</head>
+<body>
+<header class="admin-header">
+  <div class="container admin-header-inner">
+    <span class="logo">🎧 Audio Shop Admin</span>
+    <nav class="admin-nav">
+      <a href="../">대시보드</a>
+      <a href="../products/list">상품 관리</a>
+      <a href="list" aria-current="page">주문 관리</a>
+    </nav>
+    <button type="button" class="btn admin-logout" id="logout-btn">로그아웃</button>
+  </div>
+</header>
+
+<main class="page">
+  <div class="container">
+    <a class="back-link" href="list">← 주문 목록</a>
+
+    <div id="order-view" hidden>
+      <div class="card order-summary-card">
+        <div class="order-summary-head">
+          <div>
+            <p class="order-id" id="order-id"></p>
+            <p class="order-date" id="order-date"></p>
+          </div>
+          <span class="chip" id="order-status-chip"></span>
+        </div>
+
+        <p class="order-customer" id="order-customer"></p>
+
+        <div class="order-items" id="order-items"></div>
+
+        <div class="summary-row total-row">
+          <span>총 결제 금액</span>
+          <strong id="order-total"></strong>
+        </div>
+
+        <div class="order-address">
+          <p class="label">배송지</p>
+          <p id="order-address"></p>
+        </div>
+
+        <div class="order-address">
+          <p class="label">결제 수단</p>
+          <p id="order-payment"></p>
+        </div>
+      </div>
+
+      <div class="card status-card">
+        <h3>배송 상태 관리</h3>
+        <ol class="timeline" id="timeline"></ol>
+
+        <div id="advance-section">
+          <div class="form-group" id="shipping-fields" hidden>
+            <label for="carrier">배송사</label>
+            <input type="text" id="carrier" placeholder="예: CJ대한통운">
+            <label for="tracking">운송장번호</label>
+            <input type="text" id="tracking" placeholder="운송장번호 입력">
+            <p class="form-error" id="shipping-error" hidden>배송사와 운송장번호를 모두 입력해주세요.</p>
+          </div>
+          <button type="button" class="btn btn-primary" id="advance-btn"></button>
+        </div>
+        <p class="done-message" id="done-message" hidden>모든 배송 단계가 완료된 주문입니다.</p>
+      </div>
+    </div>
+
+    <p class="empty-state" id="not-found" hidden>주문을 찾을 수 없습니다.</p>
+  </div>
+</main>
+<script src="../../js/data.js"></script>
+<script src="../../js/utils.js"></script>
+<script src="status.js"></script>
+</body>
+</html>
