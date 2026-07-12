@@ -55,6 +55,11 @@
 
     orders.forEach(function (order) {
       var tr = document.createElement("tr");
+      tr.className = "row-clickable";
+      tr.addEventListener("click", function (e) {
+        if (e.target.closest("a, button")) return;
+        location.href = "status?id=" + encodeURIComponent(order.id);
+      });
 
       var tdId = document.createElement("td");
       var link = document.createElement("a");
