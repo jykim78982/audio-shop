@@ -60,6 +60,11 @@
 
   function renderRow(p) {
     var tr = document.createElement("tr");
+    tr.className = "row-clickable";
+    tr.addEventListener("click", function (e) {
+      if (e.target.closest("a, button")) return;
+      location.href = "view?id=" + encodeURIComponent(p.id);
+    });
 
     var tdName = document.createElement("td");
     var link = document.createElement("a");
@@ -98,6 +103,10 @@
   function renderCard(p) {
     var card = document.createElement("div");
     card.className = "product-card" + (p.soldOut ? " is-soldout" : "");
+    card.addEventListener("click", function (e) {
+      if (e.target.closest("a, button")) return;
+      location.href = "view?id=" + encodeURIComponent(p.id);
+    });
 
     var thumb = document.createElement("div");
     thumb.className = "product-thumb";

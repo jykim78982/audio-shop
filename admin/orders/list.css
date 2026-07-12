@@ -135,6 +135,22 @@
   border-bottom: none;
 }
 
+.order-table tbody tr {
+  transition: background-color 0.15s ease;
+}
+
+.order-table tbody tr.row-clickable {
+  cursor: pointer;
+}
+
+.order-table tbody tr:hover {
+  background-color: var(--color-bg);
+}
+
+.order-table tbody tr:hover td:first-child {
+  box-shadow: inset 3px 0 0 var(--color-primary);
+}
+
 .order-table .id-link {
   font-weight: 700;
   color: var(--color-primary);

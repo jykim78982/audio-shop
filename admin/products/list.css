@@ -155,6 +155,22 @@
   border-bottom: none;
 }
 
+.product-table tbody tr {
+  transition: background-color 0.15s ease;
+}
+
+.product-table tbody tr.row-clickable {
+  cursor: pointer;
+}
+
+.product-table tbody tr:hover {
+  background-color: var(--color-bg);
+}
+
+.product-table tbody tr:hover td:first-child {
+  box-shadow: inset 3px 0 0 var(--color-primary);
+}
+
 .product-table .name-link {
   font-weight: 700;
   color: var(--color-primary);
@@ -193,6 +209,7 @@
   border: 1px solid var(--color-border);
   border-radius: var(--radius);
   background: var(--color-surface);
+  cursor: pointer;
   transition: border-color 0.15s ease;
 }
 
