@@ -404,16 +404,16 @@ audio-shop/
 - [x] `products/detail.html` + `detail.js` — 상품 상세(이미지/브랜드/가격/설명/스펙), 수량 선택
 - [x] "담기" 클릭 시 로그인 여부(`shop_session`) 분기 → `/my/cart` or `/guest/cart` 이동 로직 (두 페이지 자체는 Phase 6/7에서 구현 예정이라 현재는 이동만 하고 404)
 
-### Phase 5. 회원 인증 (`auth/`)
-- [ ] `auth/signup.html` + `signup.js` — 회원가입 폼, 이메일 중복 체크, `shop_users`에 추가
-- [ ] `auth/login.html` + `login.js` — 통합 로그인: `shop_users` 우선 대조(일치 시 `shop_session` 저장 → `/index.html`) → 없으면 `shop_admin` 대조(일치 시 `shop_admin_session` 저장 → `/admin/index.html`) → 둘 다 불일치면 에러
+### Phase 5. 회원 인증 (`auth/`) ✅
+- [x] `auth/signup.html` + `signup.js` — 회원가입 폼, 이메일 중복 체크, `shop_users`에 추가
+- [x] `auth/login.html` + `login.js` — 통합 로그인: `shop_users` 우선 대조(일치 시 `shop_session` 저장 → `/index.html`) → 없으면 `shop_admin` 대조(일치 시 `shop_admin_session` 저장 → `/admin/index.html`) → 둘 다 불일치면 에러
 
-### Phase 6. 회원 장바구니 & 주문 (`my/`)
-- [ ] 인증 가드 유틸: 미로그인 시 `/auth/login`으로 리다이렉트
-- [ ] `my/cart/index.html` + `index.js` — 담긴 항목 목록, 수량 +/- 조절, 개별 삭제, 전체 비우기, 합계 계산, 배송지 입력
-- [ ] "결제하기" → 모의 결제 확인 모달 → 주문 생성(`customerType: member`) → `/my/orders/status?id=...` 이동
-- [ ] `my/orders/list.html` + `list.js` — 본인(`userId`) 명의 주문 목록, 배송중 주문 뱃지 표시
-- [ ] `my/orders/status.html` + `status.js` — 주문 상세 + **배송 조회**(배송사/운송장번호 표시, 조회 링크, `statusHistory` 타임라인 렌더링)
+### Phase 6. 회원 장바구니 & 주문 (`my/`) ✅
+- [x] 인증 가드: 미로그인 시 `/auth/login`으로 리다이렉트
+- [x] `my/cart/index.html` + `index.js` — 담긴 항목 목록, 수량 +/- 조절, 개별 삭제, 전체 비우기, 합계 계산, 배송지 입력
+- [x] "결제하기" → 모의 결제 확인 모달 → 주문 생성 → `/my/orders/status?id=...` 이동
+- [x] `my/orders/list.html` + `list.js` — 본인(`userId`) 명의 주문 목록, 배송중 주문 뱃지 표시
+- [x] `my/orders/status.html` + `status.js` — 주문 상세 + **배송 조회**(배송사/운송장번호 표시, 조회 링크, `statusHistory` 타임라인 렌더링)
 
 ### Phase 7. 비회원 장바구니 & 주문 (`guest/`)
 - [ ] `guest/cart/index.html` + `index.js` — `my/cart`와 동일 UI, 결제 시 연락처+배송지 입력 필수

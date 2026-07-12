@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>주문 상세 - Audio Shop</title>
+<link rel="stylesheet" href="../../css/variables.css">
+<link rel="stylesheet" href="status.css">
+</head>
+<body>
+<header class="site-header">
+  <div class="container header-inner">
+    <a class="logo" href="../../">🎧 AUDIO SHOP</a>
+    <nav class="nav-links">
+      <a href="../../products/list">상품 보러가기</a>
+      <a href="list" aria-current="page">주문 조회</a>
+      <a href="../cart/">장바구니<span class="badge-count" id="cart-badge" hidden>0</span></a>
+      <span id="member-actions">
+        <span id="member-name"></span>
+        <button type="button" class="btn btn-outline" id="logout-btn">로그아웃</button>
+      </span>
+    </nav>
+  </div>
+</header>
+
+<main class="page">
+  <div class="container">
+    <a class="back-link" href="list">← 주문 내역</a>
+
+    <div id="order-view" hidden>
+      <div class="card order-summary-card">
+        <div class="order-summary-head">
+          <div>
+            <p class="order-id" id="order-id"></p>
+            <p class="order-date" id="order-date"></p>
+          </div>
+          <span class="chip" id="order-status-chip"></span>
+        </div>
+
+        <div class="order-items" id="order-items"></div>
+
+        <div class="summary-row total-row">
+          <span>총 결제 금액</span>
+          <strong id="order-total"></strong>
+        </div>
+
+        <div class="order-address">
+          <p class="label">배송지</p>
+          <p id="order-address"></p>
+        </div>
+
+        <div class="order-address">
+          <p class="label">결제 수단</p>
+          <p id="order-payment"></p>
+        </div>
+      </div>
+
+      <div class="card shipping-card">
+        <h3>배송 조회</h3>
+        <p class="shipping-info" id="shipping-info" hidden>
+          <span id="shipping-carrier"></span> · 운송장번호 <span id="shipping-tracking"></span>
+          <a href="#" id="tracking-link" target="_blank" rel="noopener">배송 조회하기 →</a>
+        </p>
+        <p class="shipping-help" id="shipping-help">상품 준비중입니다.</p>
+
+        <ol class="timeline" id="timeline"></ol>
+      </div>
+    </div>
+
+    <p class="empty-state" id="not-found" hidden>주문을 찾을 수 없습니다.</p>
+  </div>
+</main>
+<script src="../../js/data.js"></script>
+<script src="../../js/utils.js"></script>
+<script src="status.js"></script>
+</body>
+</html>

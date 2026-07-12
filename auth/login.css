@@ -1,0 +1,99 @@
+/* auth/login.html 전용 스타일. css/variables.css를 불러온 뒤 이 파일이 나머지를 전부 정의합니다. */
+.page {
+  padding-top: var(--spacing-lg);
+  padding-bottom: 64px;
+}
+
+.eyebrow {
+  color: var(--color-accent);
+  font-size: 0.82rem;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  margin: 0 0 10px;
+}
+
+/* ===== 폼 ===== */
+.form-group {
+  margin-bottom: var(--spacing);
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 6px;
+  font-size: 0.88rem;
+  font-weight: 700;
+}
+
+.form-group input {
+  width: 100%;
+  padding: 10px 12px;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  background: var(--color-surface);
+}
+
+.form-group input:focus {
+  outline: 2px solid rgba(47, 111, 237, 0.35);
+  outline-offset: 1px;
+}
+
+.form-error {
+  color: var(--color-danger);
+  font-size: 0.85rem;
+  margin-bottom: var(--spacing);
+}
+
+.form-error[hidden] {
+  display: none;
+}
+
+/* ===== 로그인 카드 ===== */
+.login-page {
+  display: flex;
+  align-items: center;
+  min-height: calc(100vh - 40px);
+}
+
+.login-page .container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.auth-logo {
+  display: block;
+  margin-bottom: var(--spacing-lg);
+  color: var(--color-primary);
+  font-size: 1.15rem;
+  font-weight: 900;
+}
+
+.login-card {
+  width: 100%;
+  max-width: 380px;
+  padding: var(--spacing-lg);
+}
+
+.login-card h1 {
+  margin: 4px 0 8px;
+  font-size: 1.4rem;
+}
+
+.login-desc {
+  margin: 0 0 var(--spacing-lg);
+  color: var(--color-text-muted);
+  font-size: 0.88rem;
+}
+
+.login-hint {
+  margin: var(--spacing) 0 0;
+  text-align: center;
+  color: var(--color-text-muted);
+  font-size: 0.85rem;
+}
+
+.login-hint a {
+  color: var(--color-accent);
+  font-weight: 700;
+}

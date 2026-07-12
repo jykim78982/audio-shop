@@ -208,6 +208,7 @@
       items: data.items || [],
       total: data.total || 0,
       address: data.address || "",
+      paymentMethod: data.paymentMethod || "카드",
       status: "접수",
       shipping: {
         carrier: "",

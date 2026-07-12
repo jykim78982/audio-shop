@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>회원가입 - Audio Shop</title>
+<link rel="stylesheet" href="../css/variables.css">
+<link rel="stylesheet" href="login.css">
+</head>
+<body>
+<main class="page login-page">
+  <div class="container">
+    <a class="auth-logo" href="../">🎧 AUDIO SHOP</a>
+    <div class="login-card card">
+      <p class="eyebrow">Sign up</p>
+      <h1>회원가입</h1>
+      <p class="login-desc">이름, 이메일, 비밀번호를 입력해주세요.</p>
+
+      <form id="signup-form" novalidate>
+        <p class="form-error" id="form-error" hidden></p>
+        <div class="form-group">
+          <label for="name">이름</label>
+          <input type="text" id="name" name="name" autocomplete="name" required>
+        </div>
+        <div class="form-group">
+          <label for="email">이메일</label>
+          <input type="email" id="email" name="email" autocomplete="username" required>
+        </div>
+        <div class="form-group">
+          <label for="password">비밀번호</label>
+          <input type="password" id="password" name="password" autocomplete="new-password" required>
+        </div>
+        <button type="submit" class="btn btn-primary btn-block">가입하기</button>
+      </form>
+
+      <p class="login-hint">이미 계정이 있으신가요? <a href="login">로그인</a></p>
+    </div>
+  </div>
+</main>
+<script src="../js/data.js"></script>
+<script src="../js/utils.js"></script>
+<script src="signup.js"></script>
+</body>
+</html>

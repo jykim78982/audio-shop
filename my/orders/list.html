@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>주문 내역 - Audio Shop</title>
+<link rel="stylesheet" href="../../css/variables.css">
+<link rel="stylesheet" href="list.css">
+</head>
+<body>
+<header class="site-header">
+  <div class="container header-inner">
+    <a class="logo" href="../../">🎧 AUDIO SHOP</a>
+    <nav class="nav-links">
+      <a href="../../products/list">상품 보러가기</a>
+      <a href="list" aria-current="page">주문 조회</a>
+      <a href="../cart/">장바구니<span class="badge-count" id="cart-badge" hidden>0</span></a>
+      <span id="member-actions">
+        <span id="member-name"></span>
+        <button type="button" class="btn btn-outline" id="logout-btn">로그아웃</button>
+      </span>
+    </nav>
+  </div>
+</header>
+
+<main class="page">
+  <div class="container">
+    <div class="section-heading">
+      <h2>주문 내역</h2>
+    </div>
+
+    <div class="card" id="order-list-card">
+      <table class="order-table">
+        <thead>
+          <tr>
+            <th>주문번호</th>
+            <th>주문일시</th>
+            <th>상품</th>
+            <th>금액</th>
+            <th>상태</th>
+          </tr>
+        </thead>
+        <tbody id="order-tbody"></tbody>
+      </table>
+      <p class="empty-state" id="empty-state" hidden>주문 내역이 없습니다.</p>
+    </div>
+  </div>
+</main>
+<script src="../../js/data.js"></script>
+<script src="../../js/utils.js"></script>
+<script src="list.js"></script>
+</body>
+</html>

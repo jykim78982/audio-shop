@@ -1,0 +1,164 @@
+/* my/orders/list.html 전용 스타일. css/variables.css를 불러온 뒤 이 파일이 나머지를 전부 정의합니다. */
+.page {
+  padding-top: var(--spacing-lg);
+  padding-bottom: 64px;
+}
+
+/* ===== 헤더/내비게이션 ===== */
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  background: #ffffff;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.header-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--spacing-lg);
+  min-height: 68px;
+}
+
+.logo {
+  color: var(--color-primary);
+  font-size: 1.15rem;
+  font-weight: 900;
+  letter-spacing: 0.01em;
+}
+
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 28px;
+  flex-wrap: wrap;
+}
+
+.nav-links a {
+  padding: 4px 0;
+  color: var(--color-text-muted);
+  font-size: 0.85rem;
+  font-weight: 700;
+  letter-spacing: 0.01em;
+}
+
+.nav-links a[aria-current="page"],
+.nav-links a:hover {
+  color: var(--color-primary);
+}
+
+.nav-links .badge-count {
+  display: inline-grid;
+  place-items: center;
+  min-width: 20px;
+  height: 20px;
+  margin-left: 4px;
+  border-radius: 999px;
+  background: var(--color-accent);
+  color: #fff;
+  font-size: 0.7rem;
+  font-weight: 800;
+  padding: 0 5px;
+}
+
+.nav-links .badge-count[hidden] {
+  display: none;
+}
+
+/* ===== 섹션 헤딩 ===== */
+.section-heading {
+  display: flex;
+  align-items: end;
+  justify-content: space-between;
+  gap: var(--spacing);
+  margin-bottom: var(--spacing);
+}
+
+.section-heading h2 {
+  margin: 0;
+  font-size: 1.2rem;
+}
+
+/* ===== 뱃지/칩 ===== */
+.chip {
+  display: inline-flex;
+  width: fit-content;
+  border-radius: 4px;
+  padding: 3px 9px;
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.02em;
+  color: #fff;
+  white-space: nowrap;
+}
+
+.chip-neutral { background: var(--color-text-muted); }
+.chip-accent { background: var(--color-accent); }
+.chip-success { background: var(--color-success); }
+
+/* ===== 주문 목록 테이블 ===== */
+.order-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.order-table th,
+.order-table td {
+  padding: 12px 16px;
+  text-align: left;
+  border-bottom: 1px solid var(--color-border);
+  font-size: 0.88rem;
+}
+
+.order-table th {
+  color: var(--color-text-muted);
+  font-weight: 700;
+  font-size: 0.8rem;
+}
+
+.order-table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+.order-table .id-link {
+  font-weight: 800;
+  color: var(--color-primary);
+}
+
+.order-table .items-summary {
+  color: var(--color-text-muted);
+}
+
+.empty-state {
+  display: grid;
+  justify-items: center;
+  gap: var(--spacing-sm);
+  padding: 48px 24px;
+  text-align: center;
+  color: var(--color-text-muted);
+  font-weight: 700;
+}
+
+.empty-state[hidden] {
+  display: none;
+}
+
+@media (max-width: 760px) {
+  .header-inner {
+    align-items: stretch;
+    flex-direction: column;
+    gap: 8px;
+    padding: 12px 0;
+    min-height: 0;
+  }
+
+  .nav-links {
+    gap: 16px;
+  }
+
+  .order-table {
+    display: block;
+    overflow-x: auto;
+  }
+}
