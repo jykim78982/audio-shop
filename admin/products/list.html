@@ -24,10 +24,16 @@
   <div class="container">
     <div class="section-heading">
       <h2>상품 관리</h2>
-      <a class="btn btn-primary" href="create">+ 상품 등록</a>
+      <div class="section-heading-right">
+        <div class="view-toggle" id="view-toggle">
+          <button type="button" data-view="list" class="is-active">☰ 목록보기</button>
+          <button type="button" data-view="grid">⊞ 그리드보기</button>
+        </div>
+        <a class="btn btn-primary" href="create">+ 상품 등록</a>
+      </div>
     </div>
 
-    <div class="card">
+    <div class="card" id="table-view">
       <table class="product-table">
         <thead>
           <tr>
@@ -41,8 +47,11 @@
         </thead>
         <tbody id="product-tbody"></tbody>
       </table>
-      <p class="empty-state" id="empty-state" hidden>등록된 상품이 없습니다.</p>
+      <p class="empty-state" id="empty-state-table" hidden>등록된 상품이 없습니다.</p>
     </div>
+
+    <div class="product-grid" id="product-grid" hidden></div>
+    <p class="empty-state" id="empty-state-grid" hidden>등록된 상품이 없습니다.</p>
   </div>
 </main>
 <script src="../../js/data.js"></script>
